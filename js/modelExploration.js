@@ -288,6 +288,7 @@ d3.queue()
   .defer(d3.json, "./data/jan_topics.json")
   .defer(d3.json, "./data/feb_topics.json")
   .defer(d3.json, "./data/mar_topics.json")
+  .defer(d3.json, "./data/apr_topics.json")
   .await(fancy_start);
 
 ////////////////////////////////////////////////////////////// 
@@ -340,10 +341,11 @@ var handle = slider.insert("circle", ".track-overlay")
     .attr("r", 9);
 
 
-function fancy_start(error, jan, feb, mar) {
+function fancy_start(error, jan, feb, mar, apr) {
     jan_data = jan
     feb_data = feb
     mar_data = mar
+    apr_data = apr
     slider.transition()
         .duration(9000)
         .tween("select_model", function() {
@@ -361,7 +363,7 @@ function select_model(loc) {
   } else if (loc >= 3 && loc < 4) {
     var date = "2020-03";
   } else if (loc == 4) {
-    var date = "2020-03";
+    var date = "2020-04";
   }
   handle.attr("cx", x(loc));
   radar_up(date)
